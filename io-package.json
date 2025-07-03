@@ -1,6 +1,6 @@
 {
   "common": {
-    "name": "vis-2-widgets-react-template",
+    "name": "vis-2-widgets-lcd",
     "version": "1.2.0",
     "news": {
       "1.2.0": {
@@ -95,41 +95,41 @@
         "zh-cn": "增加CI试验"
       }
     },
-    "title": "vis-2-widgets-react-template.org",
+    "title": "vis-2-widgets-lcd",
     "titleLang": {
-      "en": "Vis-Widget template",
-      "de": "Vis-Widget template",
-      "ru": "Vis-Widget template",
-      "pt": "Vis-Widget template",
-      "nl": "Vis-Widget template",
-      "fr": "Vis-Widget template",
-      "it": "Vis-Widget template",
-      "es": "Vis-Widget template",
-      "pl": "Vis-Widget template",
-      "zh-cn": "Vis-Widget template"
+      "en": "LCD Display Widget",
+      "de": "LCD Display Widget",
+      "ru": "LCD Display Widget",
+      "pt": "LCD Display Widget",
+      "nl": "LCD Display Widget",
+      "fr": "LCD Display Widget",
+      "it": "LCD Display Widget",
+      "es": "LCD Display Widget",
+      "pl": "LCD Display Widget",
+      "zh-cn": "LCD Display Widget"
     },
     "desc": {
-      "en": "Vis-Widget template",
-      "de": "Vis-Widget template",
-      "ru": "Vis-Widget template",
-      "pt": "Vis-Widget template",
-      "nl": "Vis-Widget template",
-      "fr": "Vis-Widget template",
-      "it": "Vis-Widget template",
-      "es": "Vis-Widget template",
-      "pl": "Vis-Widget template",
-      "zh-cn": "Vis-Widget template"
+      "en": "Monochrome LCD Display Widget for ioBroker vis-2",
+      "de": "Monochrom LCD Display Widget für ioBroker vis-2",
+      "ru": "Monochrome LCD Display Widget for ioBroker vis-2",
+      "pt": "Monochrome LCD Display Widget for ioBroker vis-2",
+      "nl": "Monochrome LCD Display Widget for ioBroker vis-2",
+      "fr": "Monochrome LCD Display Widget for ioBroker vis-2",
+      "it": "Monochrome LCD Display Widget for ioBroker vis-2",
+      "es": "Monochrome LCD Display Widget for ioBroker vis-2",
+      "pl": "Monochrome LCD Display Widget for ioBroker vis-2",
+      "zh-cn": "Monochrome LCD Display Widget for ioBroker vis-2"
     },
     "authors": [
       "bluefox <dogafox@gmail.com>"
     ],
     "keywords": [
-      "vis-2-widgets-react-template"
+      "vis-2-widgets-lcd"
     ],
     "license": "MIT",
     "platform": "Javascript/Node.js",
-    "icon": "vis-2-widgets-react-template.svg",
-    "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.vis-2-widgets-react-template/master/admin/vis-2-widgets-react-template.svg",
+    "icon": "vis-2-widgets-lcd.svg",
+    "extIcon": "https://raw.githubusercontent.com/Red-B/ioBroker.vis-2-widgets-lcd/master/admin/vis-2-widgets-lcd.svg",
     "enabled": true,
     "readme": "https://github.com/ioBroker/ioBroker.vis-2-widgets-react-template/blob/master/README.md",
     "loglevel": "info",
@@ -147,14 +147,14 @@
     "connectionType": "cloud",
     "dataSource": "poll",
     "visWidgets": {
-      "vis2DemoWidget": {
+      "vis2LCDWidget": {
         "i18n": "component",
-        "name": "vis2DemoWidget",
-        "url": "vis-2-widgets-react-template/customWidgets.js",
+        "name": "vis2LCDWidget",
+        "url": "vis-2-widgets-lcd/customWidgets.js",
         "bundlerType": "module",
         "bundlerTypeComment": "Set bundlerType only for TypeScript or vite widgets",
         "components": [
-          "DemoWidget"
+          "LCDWidget"
         ]
       }
     },

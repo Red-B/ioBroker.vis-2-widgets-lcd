@@ -1,16 +1,16 @@
 {
-  "name": "iobroker.vis-2-widgets-react-template",
+  "name": "iobroker.vis-2-widgets-lcd",
   "version": "1.2.0",
-  "description": "ioBroker vis widget demo",
+  "description": "ioBroker vis LCD display widget",
   "author": "bluefox <dogafox@gmail.com>",
   "contributors": [
     "bluefox <dogafox@gmail.com>"
   ],
-  "homepage": "https://github.com/ioBroker/ioBroker.vis-2-widgets-react-template",
+  "homepage": "https://github.com/Red-B/ioBroker.vis-2-widgets-lcd",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ioBroker/ioBroker.vis-2-widgets-react-template"
+    "url": "https://github.com/Red-B/ioBroker.vis-2-widgets-lcd"
   },
   "keywords": [
     "ioBroker",
@@ -25,7 +25,7 @@
     "@iobroker/vis-2-widgets-react-dev": "^4.0.4",
     "@iobroker/vis-2-widgets-testing": "^1.0.6"
   },
-  "main": "widgets/vis-2-widgets-react-template/customWidgets.js",
+  "main": "widgets/vis-2-widgets-lcd/customWidgets.js",
   "files": [
     "admin/",
     "widgets/",
@@ -48,7 +48,7 @@
     "npm": "npm i -f && cd src-widgets-js && npm i -f && cd ../src-widgets-ts && npm i -f && cd ../src-widgets-jsvite && npm i -f"
   },
   "bugs": {
-    "url": "https://github.com/ioBroker/ioBroker.vis-2-widgets-react-template/issues"
+    "url": "https://github.com/Red-B/ioBroker.vis-2-widgets-lcd/issues"
   },
   "readmeFilename": "README.md"
 }

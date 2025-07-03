@@ -10,10 +10,10 @@ const config = {
     plugins: [
         federation({
             manifest: true,
-            name: 'vis2DemoWidget',
+            name: 'vis2LCDWidget',
             filename: 'customWidgets.js',
             exposes: {
-                './DemoWidget': './src/DemoWidget', // List of all widgets in this package
+                './LCDWidget': './src/LCDWidget', // List of all widgets in this package
                 './translations': './src/translations',
             },
             remotes: {},
