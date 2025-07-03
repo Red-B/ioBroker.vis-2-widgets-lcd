@@ -1,16 +1,20 @@
 import React from 'react';
-import {
-    Card, CardContent,
-} from '@mui/material';
 
-class DemoWidget extends window.visRxWidget {
+// const canvasRef = React.useRef(null);
+
+class LCDWidget extends window.visRxWidget {
+    constructor(props) {
+        super(props);
+        this.canvasRef = React.createRef();
+    }
+
     static getWidgetInfo() {
         return {
-            id: 'tplDemoWidget',
-            visSet: 'demo',
-            visSetLabel: 'vis_2_widgets_template', // Widget set translated label (should be defined only in one widget of a set)
-            visSetColor: '#cf00ff',                // Color of a widget set. it is enough to set color only in one widget of a set
-            visName: 'DemoWidget',                 // Name of widget
+            id: 'tplLCDWidget',
+            visSet: 'lcd',
+            visSetLabel: 'vis_2_widgets_lcd', // Widget set translated label (should be defined only in one widget of a set)
+            visSetColor: '#00cf00',                // Color of a widget set. it is enough to set color only in one widget of a set
+            visName: 'LCDWidget',                 // Name of widget
             visAttrs: [
                 {
                     name: 'common', // group name
@@ -37,7 +41,7 @@ class DemoWidget extends window.visRxWidget {
                 },
                 // check here all possible types https://github.com/ioBroker/ioBroker.vis/blob/react/src/src/Attributes/Widget/SCHEMA.md
             ],
-            visPrev: 'widgets/vis-2-widgets-react-template/img/vis-widget-demo.png',
+            visPrev: 'widgets/vis-2-widgets-lcd/img/vis-widget-lcd.png',
         };
     }
 
@@ -50,6 +54,48 @@ class DemoWidget extends window.visRxWidget {
         //                        then this.state.rxData.type will have state value of `system.adapter.admin.0.alive`
         // 3. this.state.rxStyle - contains all widget styles with replaced bindings. E.g. if this.state.styles.width is `{javascript.0.width}px`,
         //                        then this.state.rxData.type will have state value of `javascript.0.width` + 'px
+        const canvasEle = this.canvasRef.current;
+        if (!canvasEle) return;
+        canvasEle.width = 240;
+        canvasEle.height = 128;
+        const context = canvasEle.getContext('2d');
+        // Clear canvas
+        context.clearRect(0, 0, canvasEle.width, canvasEle.height);
+
+        let array = [];
+        try {
+            const stateValue = this.state.values[`${this.state.rxData.oid}.val`];
+            if (stateValue) {
+                array = Object.values(JSON.parse(stateValue));
+            }
+        } catch (error) {
+            console.warn('Error parsing LCD data:', error);
+        }
+
+        // Set default background to white
+        context.fillStyle = 'white';
+        context.fillRect(0, 0, canvasEle.width, canvasEle.height);
+
+        // Only render if we have data
+        if (array.length > 0) {
+            for (let i = 0; i < 128 && i < array.length / 30; i++) {
+                for (let j = 0; j < 30; j++) {
+                    const byte = array[i * 30 + j];
+                    if (byte !== undefined) {
+                        for (let k = 0; k < 8; k++) {
+                            // eslint-disable-next-line no-bitwise
+                            const pixel = (byte >> (7 - k)) & 1;
+                            const xpos = (j * 8 + k);
+                            const ypos = i;
+                            if (pixel) {
+                                context.fillStyle = 'black';
+                                context.fillRect(xpos, ypos, 1, 1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     componentDidMount() {
@@ -59,15 +105,22 @@ class DemoWidget extends window.visRxWidget {
         this.propertiesUpdate();
     }
 
-    // To not write before every label "vis_2_widgets_template_" we can use this method
+    componentDidUpdate() {
+        super.componentDidUpdate();
+
+        // Update data when component updates
+        this.propertiesUpdate();
+    }
+
+    // To not write before every label "vis_2_widgets_lcd_" we can use this method
     static getI18nPrefix() {
-        return 'vis_2_widgets_template_';
+        return 'vis_2_widgets_lcd_';
     }
 
     // Do not delete this method. It is used by vis to read the widget configuration.
     // eslint-disable-next-line class-methods-use-this
     getWidgetInfo() {
-        return DemoWidget.getWidgetInfo();
+        return LCDWidget.getWidgetInfo();
     }
 
     // This function is called every time when rxData is changed
@@ -84,22 +137,26 @@ class DemoWidget extends window.visRxWidget {
     // This function is called every time when some Object State updated, but all changes lands into this.state.values too
     // eslint-disable-next-line class-methods-use-this, no-unused-vars
     onStateUpdated(id, state) {
-
+        this.propertiesUpdate();
     }
 
     renderWidgetBody(props) {
         super.renderWidgetBody(props);
 
-        const text = DemoWidget.t('My Demo widget:');
+        // const text = DemoWidget.t('My Demo widget:');
 
-        return <Card style={{ width: '100%', height: '100%' }}>
-            <CardContent>
-                {text}
-                {' '}
-                {this.state.values[`${this.state.rxData.oid}.val`]}
-            </CardContent>
-        </Card>;
+        return <canvas
+            ref={this.canvasRef}
+            width={240}
+            height={128}
+            style={{
+                border: '1px solid #ccc',
+                imageRendering: 'pixelated',
+                maxWidth: '100%',
+                height: 'auto',
+            }}
+        ></canvas>;
     }
 }
 
-export default DemoWidget;
+export default LCDWidget;
